@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SignalR;
 using Notification_API.Hubs;
@@ -20,7 +21,7 @@ namespace Notification_API.Controllers
             _hubContext = hubContext;
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateProduct([FromBody] Product product)
         {
             var newProduct = _productService.AddProduct(product);
@@ -32,10 +33,11 @@ namespace Notification_API.Controllers
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetProduct(int id)
+        public string GetProduct(int id)
         {
-            var product = _productService.GetProductById(id);
-            return product == null ? NotFound() : Ok(product);
+            //var product = _productService.GetProductById(id);
+            //return product == null ? NotFound() : Ok(product);
+            return "The get function is working id: "  + id;
         }
 
         [HttpGet("Products")]
@@ -72,8 +74,6 @@ namespace Notification_API.Controllers
 
             return Ok();
         }
-
-       
 
         //[HttpGet("{id}")]
         //public string GetProduct()
