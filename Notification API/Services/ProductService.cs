@@ -14,9 +14,10 @@ namespace Notification_API.Services
             return product;
         }
 
-        public Product? GetProductById(int id)
+        public Product GetProductById(int id)
         {
-            return _products.FirstOrDefault(p => p.Id== id);
+            return _products.FirstOrDefault(p => p.Id == id)
+                ?? throw new InvalidOperationException($"Product with Id {id} not found.");
         }
 
         public IEnumerable<Product> GetAllProducts()
@@ -24,12 +25,12 @@ namespace Notification_API.Services
             return _products;
         }
 
-        public Product? UpdateProduct(Product product)
+        public Product UpdateProduct(Product product)
         {
             var existingProduct = _products.FirstOrDefault(p => p.Id == product.Id);
             if (existingProduct == null)
             {
-                return null;
+                throw new InvalidOperationException($"Product with Id {product.Id} not found.");
             }
 
             existingProduct.Name = product.Name;

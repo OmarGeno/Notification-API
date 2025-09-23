@@ -1,3 +1,6 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.IdentityModel.Tokens;
 using Notification_API.Hubs;
 using Notification_API.Services;
 
@@ -5,13 +8,20 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddSingleton<IProductService, ProductService>();
+builder.Services.AddSingleton<IOrderService, OrderService>();
+builder.Services.AddSingleton<IUserIdProvider, FirebaseUserIdProvider>();
+
 builder.Services.AddSignalR();
 builder.Services.AddControllers();
 
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddFirebaseAuthentication(
+    projectId: "sharp-devs",
+    hubPath: "/producthub"
+);
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -33,14 +43,12 @@ app.UseHttpsRedirection();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-    endpoints.MapHub<ProductHub>("/productHub");
-});
-
+// Top-level route registrations
 app.MapControllers();
+app.MapHub<ProductHub>("/productHub");
 
 app.Run();
+

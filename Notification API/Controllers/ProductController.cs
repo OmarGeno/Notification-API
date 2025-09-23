@@ -75,36 +75,5 @@ namespace Notification_API.Controllers
             return Ok();
         }
 
-        //[HttpGet("{id}")]
-        //public string GetProduct()
-        //{
-        //    return "Http GetProduct Request";
-        //}
-
-        //[HttpGet("Products")]
-        //public string GetProducts()
-        //{
-        //    return "Http GetProducts Request";
-        //}
-
-        //[HttpPost]
-        //public string CreateProduct(string product)
-        //{
-        //    return "Http" + product + "Request";
-        //}
-
-        //[HttpPut("{id}")]
-        //public string UpdateProduct(int id, Product product)
-        //{
-        //    return "Http UpdateProduct Request";
-        //}
-
-        //[HttpDelete("{id}")]
-        //public string DeleteProduct(int Id)
-        //{
-        //    return "Http DeleteProduct Request";
-        //}
-
-
     }
 }
