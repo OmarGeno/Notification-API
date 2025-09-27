@@ -1,8 +1,8 @@
-# ⚡ SignalR Notifications API
+# ⚡ PulseHub-Backend
 
 ![Backend Logo](https://img.shields.io/badge/SignalR-ASP.NET%20Core-blue?style=for-the-badge)
 
-SignalR Notifications API is a **real-time backend API** built with **ASP.NET Core Web API** and **SignalR**.  
+PulseHub-Backend is a **real-time backend API** built with **ASP.NET Core Web API** and **SignalR**.  
 It provides instant order notifications, status updates, and real-time communication for applications like food delivery, chat systems, or live dashboards.
 
 ---
@@ -26,3 +26,4 @@ It provides instant order notifications, status updates, and real-time communica
 - Optional: Docker for containerized deployments
 
 ---
+
